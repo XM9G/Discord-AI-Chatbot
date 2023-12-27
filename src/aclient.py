@@ -107,10 +107,11 @@ class aclient(discord.Client):
         else:
             author = message.author.id
         try:
-            response = (f'> **{user_message}** - <@{str(author)}> \n\n')
+            response = ('')
             if self.chat_model == "OFFICIAL":
                 response = f"{response}{await responses.official_handle_response(user_message, self)}"
-                await send_split_message(self, response, message)
+                message_to_send=(response)
+                await message.reply(message_to_send, mention_author=True)
             elif self.chat_model == "UNOFFICIAL":
                 response = f"{response}{await responses.unofficial_handle_response(user_message, self)}"
                 await send_split_message(self, response, message)
@@ -127,9 +128,9 @@ class aclient(discord.Client):
         except Exception as e:
             logger.exception(f"Error while sending : {e}")
             if self.is_replying_all == "True":
-                await message.channel.send(f"> **ERROR: Something went wrong, please try again later!** \n ```ERROR MESSAGE: {e}```")
+                await message.channel.send(f"> **Retard alert! Something went wrong, please try again later!** \n ```ERROR MESSAGE: {e}```")
             else:
-                await message.followup.send(f"> **ERROR: Something went wrong, please try again later!** \n ```ERROR MESSAGE: {e}```")
+                await message.followup.send(f"> **Retard alert! Something went wrong, please try again later!** \n ```ERROR MESSAGE: {e}```")
 
     async def send_start_prompt(self):
         discord_channel_id = os.getenv("DISCORD_CHANNEL_ID")
