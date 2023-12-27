@@ -111,6 +111,7 @@ class aclient(discord.Client):
             if self.chat_model == "OFFICIAL":
                 response = f"{response}{await responses.official_handle_response(user_message, self)}"
                 message_to_send=(response)
+                logger.info(message_to_send)
                 await message.reply(message_to_send, mention_author=True)
             elif self.chat_model == "UNOFFICIAL":
                 response = f"{response}{await responses.unofficial_handle_response(user_message, self)}"

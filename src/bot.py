@@ -356,8 +356,7 @@ gpt-engine: {chat_engine_status}
 
                         logger.info(f"\x1b[31m{username}\x1b[0m : '{user_message}' ({client.current_channel})")
 
-                        await client.enqueue_message("bot" + str(message), str(user_message))
-                        logger.info(message, user_message)
+                        await client.enqueue_message(message, user_message)
 
                         # Update the timestamp for the user
                         last_message_time[message.author.id] = time.time()
