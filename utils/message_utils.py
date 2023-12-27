@@ -12,7 +12,10 @@ async def send_split_message(self, response: str, message: Message, has_followed
                 code_block_chunks = [parts[i][j:j+char_limit] for j in range(0, len(parts[i]), char_limit)]
                 for chunk in code_block_chunks:
                     if self.is_replying_all == "True" or has_followed_up:
-                        await message.channel.send(f"```{chunk}```")
+                        if chunk == 1:
+                            await message.reply(f"```{chunk}```")
+                        else:   
+                            await message.channel.send(f"```{chunk}```")
                     else:
                         await message.followup.send(f"```{chunk}```")
                         has_followed_up = True
@@ -28,7 +31,8 @@ async def send_split_message(self, response: str, message: Message, has_followed
                 is_code_block = True
     else:
         if self.is_replying_all == "True" or has_followed_up:
-            await message.channel.send(response)
+            message_to_send=(response)
+            await send_split_message(message_to_send, mention_author=True)
         else:
             await message.followup.send(response)
             has_followed_up = True
