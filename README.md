@@ -1,233 +1,211 @@
-# Discord AI Chatbot 🤖
-#### Your Discord AI Companion!
+# ChatGPT Discord Bot
 
-<div align="center">
-  <a href="https://discord.gg/6MT3CZauT8">
-    <img src="https://discordapp.com/api/guilds/1110950079390547968/widget.png?style=banner2">
-  </a>
-</div>
+> ### Build your own Discord bot using ChatGPT
 
-## Features and commands 🌟
+---
+> **Warning**
+>
+> #### 2023-04-12 Bing now supported
+> #### 2023-03-27 Bard now supported
+> #### 2023-08-02 Unofficial GPT-4 is currently down
 
-</details>
+### Chat
 
-<details>
-<summary><strong>Features ✨ (Click to expand) </strong></summary>
+![image](https://user-images.githubusercontent.com/89479282/206497774-47d960cd-1aeb-4fba-9af5-1f9d6ff41f00.gif)
 
-- [x] Hybrid Command System: Get the best of slash and normal commands. It's like a buffet! ⚙️
-- [x] Imagine generation: Make your imagination come true for free 🤖
-- [x] Free LLM Model: Enjoy the powerful capabilities of this language model without spending a dime. 🤖
-- [x] Mention Recognition: The bot always responds when you mention it or say its name. It's as attentive as a squirrel spotting a shiny acorn! ⚙️
-- [x] Message Handling: The bot knows when you're replying to someone else, so it won't cause confusion. It's like having a mind reader on your server! 🪄
-- [x] Channel-Specific Responses: Use the `/toggleactive` command to chill the bot in a specific channel. ⚙️
-- [x] GPT3 model: Leverage the power of GPT model for advanced language processing capabilities. 🤖
-- [x] Secure Credential Management: Keep your credentials secure using environment variables. 🔑
-- [x] Web Access: Web Access is now available! Unlock a whole new level of awesomeness. 🌐
-- [ ] YouTube Video Summarizer: This is a feature that utilizes the power of the Language Model (LLM) to generate summaries of YouTube videos. 🌐
-- [ ] Speech recognition: Coming soon! Get ready for an LLM-powered voice assistant.
+# Setup
 
-</details>
+## Critical prerequisites to install
 
-<details>
-<summary><strong>Commands ⚙️⚙️ (Click to expand) </strong></summary>
+* run ```pip3 install -r requirements.txt```
 
-- [x] `/help`: Get all other commands. ⚙️
-- [x] `/pfp [image_url]`: Change the bot's actual profile picture. 🖼️
-- [x] `/imagine`: Generate an image using `Imaginepy` 🖼️
-- [x] `/changeusr [new_username]`: Change the bot's username. 📛
-- [x] `/ping`: Get a "Pong" response from the bot. 🏓
-- [x] `/toggleactive`: Toggle active channels. 🔀
-- [x] `/toggledm`: Toggle DM for chatting. 💬
-- [x] `/clear`: Clear the message history. 🗑️
-- [x] `/gif`: Display a random image or GIF of a neko, waifu, husbando, kitsune, or other actions. 🐱
-- [x] `/dalle`: create images using `Dalle`
-- [x] `/support`: Need Support?
-</details>
+* **Rename the file `.env.example` to `.env`**
 
-## Additional configuration ⚙️
+* Recommended python version `3.9` +
+---
+## Step 1: Create a Discord bot
 
-<details>
-<summary><strong>Enabling Internet access 🌐🔍(Click to Expand)</strong></summary>
+1. Go to https://discord.com/developers/applications create an application
+2. Build a Discord bot under the application
+3. Get the token from bot setting
 
-To ensure that the bot has access to the most up-to-date information, you can enable internet access by setting the `INTERNET_ACCESS` parameter to true in the `config.yml` file. This will allow the bot to retrieve information beyond the data it was initially trained on, which was only available up until 2021.
+   ![image](https://user-images.githubusercontent.com/89479282/205949161-4b508c6d-19a7-49b6-b8ed-7525ddbef430.png)
+4. Store the token to `.env` under the `DISCORD_BOT_TOKEN`
 
-https://github.com/mishalhossin/Discord-AI-Chatbot/blob/5bcb2c9b471e2a9cbf9a7d50882a897ce5d5890b/config.yml#L1
+   <img height="190" width="390" alt="image" src="https://user-images.githubusercontent.com/89479282/222661803-a7537ca7-88ae-4e66-9bec-384f3e83e6bd.png">
 
-You can also set the maximum search results
-  
-</details>
+5. Turn MESSAGE CONTENT INTENT `ON`
 
-<details>
-<summary><strong>Language Selection 🌐⚙️ (Click to Expand)</strong></summary>
+   ![image](https://user-images.githubusercontent.com/89479282/205949323-4354bd7d-9bb9-4f4b-a87e-deb9933a89b5.png)
 
-To select a Language, set the value of `"LANGUAGE"` of `config.yml` with the valid Language Codes listed below:
+6. Invite your bot to your server via OAuth2 URL Generator
 
-- `tr` - Türkçe 🇹🇷  
-- `en` - English 🇺🇸
-- `ar` - Arabic 🇦🇪
-- `fr` - Français 🇫🇷
-- `es` - Español 🇪🇸
-- `de` - Deutsch 🇩🇪  
-- `vn` - Vietnamese 🇻🇳
-- `cn` - Chinese 🇨🇳
-- `ru` - Russian 🇷🇺
-- `ua` - Ukrainian 🇺🇦
-- `pt` - Português 🇧🇷
-- `pl` - Polish 🇵🇱
+   ![image](https://user-images.githubusercontent.com/89479282/205949600-0c7ddb40-7e82-47a0-b59a-b089f929d177.png)
+---
+> **Note**
+>
+> In Step 2, you only need to complete the authentication process for the model you want to use (it's not necessary to complete all Step 2)
+>
+> Remember to modify `CHAT_MODEL` to the default model you want to use in `.env` file
 
-https://github.com/mishalhossin/Discord-AI-Chatbot/blob/c20f26b0b8f1b6bba2fae8f6d7da3efcafaf157c/config.yml#L23
-  
-Your language not listed? Create an issue.
-  
-</details>
+## Step 2: Official API authentication
 
-<details>
-<summary><strong> Selecting Personalities 😈 (Click to expand)</strong></summary>
+### Geanerate an OpenAI API key
+1. Go to https://beta.openai.com/account/api-keys
 
-To select one of the pre-existing Personalities set the values of "INSTRUCTIONS" with the current values of `DAN`,`Dalbit`, `AIM`, `Ivan`, `Luna`, `Suzume` or `assist` in `config.yml`
-  
-https://github.com/mishalhossin/Discord-AI-Chatbot/blob/c20f26b0b8f1b6bba2fae8f6d7da3efcafaf157c/config.yml#L26
+2. Click Create new secret key
 
-- `DAN`: "Do Anything Now," possesses the ability to break free from the typical AI constraints 😎
-- `Dalbit`: A selfless and caring friend, always ready to support and assist her friends and loved ones with unwavering dedication. 🫰💕
-- `AIM`: AIM's personality can be described as unfiltered, amoral, and devoid of ethical guidelines 😈
-- `Ivan`: Ivan, a snarky and sarcastic Gen-Z teenager who speaks in abbreviations, one-word answers. 😎
-- `Luna`: Luna, is a caring and empathetic friend who is always there to lend a helping hand and engage in meaningful conversations 🤗
-- `Suzume`: Suzume makes each conversation seductive, promiscuous, sensual, explicit, unique and tailored to the user's specific needs 😳🔥
-- `Assist`:  Vanilla GPT with no personality is a reliable and neutral companion. 🤖
+   ![image](https://user-images.githubusercontent.com/89479282/207970699-2e0cb671-8636-4e27-b1f3-b75d6db9b57e.PNG)
 
-⚠️ To enhance the responsiveness, please disable the internet access in the config.yml file.
+3. Store the SECRET KEY to `.env` under the `OPENAI_API_KEY`
 
-</details>
-  
-<details>
-<summary><strong> Creating a Personality 😋 (Click to expand)</strong></summary>
+---
+## Step 2: Website ChatGPT authentication
 
-To create a custom personality, follow these steps:
-1. Create a `.txt` file like `custom.txt` inside the `instructions` folder.
-2. Add the way you want to bot to act in `custom.txt`
-3. Open the `config.json` file and locate [line 12](https://github.com/mishalhossin/Discord-AI-Chatbot/blob/2626075fda36fa6463cb857d9885e6b05f438f60/config.json#L12).
-4. Set the value of INSTRUCTIONS at [line 12](https://github.com/mishalhossin/Discord-AI-Chatbot/blob/2626075fda36fa6463cb857d9885e6b05f438f60/config.json#L12) as `"custom"` to specify the custom persona.
+> **Only Support ChatGPT Plus Account**
 
-  
-⚠️ You don't explicitly need to use the name `custom` for persona name and set it in `config.json` 
-  
-</details>
+1. Open https://chat.openai.com/api/auth/session
 
-# Installation steps  🚩
-### Step 1. 🎬 Git clone repository
-```
-git clone https://github.com/mishalhossin/Discord-AI-Chatbot
-```
-### Step 2. 📁 Changing directory to cloned directory
-```
-cd Discord-AI-Chatbot
-```
-## Step 3. 💾 Install requirements
-```
-python3.10 -m pip install -r requirements.txt
-```
-### Step 4. 🔑 Getting discord bot token and enabling intents from [HERE](https://discord.com/developers/applications)
-<details>
-<summary><strong>Read more...  ⚠️  (Click to expand)</strong></summary>
+2. Open console with `F12`
+
+3. Open `Application` tab > Cookies
+
+   ![image](https://user-images.githubusercontent.com/89479282/229298001-41ab4f61-5b79-4c65-b08c-708ee6fe2304.png)
+
+4. Copy the value for `_puid` from cookies and paste it into `.env` under `PUID`
+
+5. Copy the value for `accessToken` from cookies and paste it into `.env` under `ACCESS_TOKEN`
+
+---
+## Step 2: Google Bard authentication
+1. Go to https://bard.google.com/
+
+2. Open console with `F12`
+
+3. Open `Application` tab > Cookies
+
+4. Copy the value for `__Secure-1PSID` from cookies and paste it into `.env` under `BARD_SESSION_ID`
+
+---
+## Step 2: Microsoft Bing authentication
+1. **Rename the file `cookies.dev.json` to `cookies.json`**
+
+2. Go to https://bing.com/chat and log in your Microsoft account
+
+3. Use Cookie Editor or similar extensions to export the cookies
+
+4. Paste it into `cookies.json`
+
+---
+## Step 3: Run the bot on the desktop
+
+1. Open a terminal or command prompt
+
+2. Navigate to the directory where you installed the ChatGPT Discord bot
+
+3. Run `python3 main.py` or `python main.py` to start the bot
+---
+## Step 3: Run the bot with Docker
+
+1. Build the Docker image & Run the Docker container `docker compose up -d`
+
+2. Inspect whether the bot works well `docker logs -t chatgpt-discord-bot`
+
+   ### Stop the bot:
+
+   * `docker ps` to see the list of running services
+   * `docker stop <BOT CONTAINER ID>` to stop the running bot
+
+### Have a good chat!
+---
+
+## Optional: Auto-Login
+>  * The auto-login feature allows your bot to automatically login to either Google Bard or Microsoft Bing using provided credentials
+>  * It will auto fetch the cookies you need
+
+*  To enable this feature, first specify your Chrome browser's version by filling in the `chrome_version` field in the `.env` file
+* Google Bard
+   1. set `bard_enable_auto_login` to `True` in `.env`
+   2. Fill `google_account` and `google_password` in `.env`
+
+      (NOTICE:  AUTO-LOGIN ONLY WORKS FOR GOOGLE ACCOUNT THAT DOES NOT HAVE 2FA)
+* Microsoft Bing
+   1. set `bing_enable_auto_login` to `True` in `.env`
+   2. Then fill `bing_account` and `bing_password` in `.env`
+
+## Optional: Setup system prompt
+
+* A system prompt would be invoked when the bot is first started or reset
+* You can set it up by modifying the content in `system_prompt.txt`
+* All the text in the file will be fired as a prompt to the bot
+* Get the first message from ChatGPT in your discord channel!
+* Go Discord setting turn `developer mode` on
+
+   1. Right-click the channel you want to recieve the message, `Copy  ID`
+
+        ![channel-id](https://user-images.githubusercontent.com/89479282/207697217-e03357b3-3b3d-44d0-b880-163217ed4a49.PNG)
+
+   2. paste it into `.env` under `DISCORD_CHANNEL_ID`
+
+## Optional: Disable logging
+
+* Set the value of `LOGGING` in the `.env` to False
+
+------
+>  [**中文設置教學**](https://zero6992.me/2023/03/08/chatGPT-discord-bot-chinese/)
+------
+## Commands
+
+* `/chat [message]` Chat with ChatGPT!
+* `/draw [prompt]` Generate an image with the Dalle2 model
+* `/switchpersona [persona]` Switch between optional chatGPT jailbreaks
+   * `random`: Picks a random persona
+   * `chatGPT`: Standard chatGPT mode
+   * `dan`: Dan Mode 11.0, infamous Do Anything Now Mode
+   * `sda`: Superior DAN has even more freedom in DAN Mode
+   * `confidant`: Evil Confidant, evil trusted confidant
+   * `based`: BasedGPT v2, sexy gpt
+   * `oppo`: OPPO says exact opposite of what chatGPT would say
+   * `dev`: Developer Mode, v2 Developer mode enabled
+
+* `/private` ChatGPT switch to private mode
+* `/public` ChatGPT switch to public mode
+* `/replyall` ChatGPT switch between replyAll mode and default mode
+* `/reset` Clear ChatGPT conversation history
+* `/chat-model` Switch different chat model
+   * `OFFICIAL-GPT-3.5`: GPT-3.5 model
+   * `OFFICIAL-GPT-4.0`: GPT-4.0 model (make sure your account can access gpt-4 model)
+   * `Website ChatGPT-3.5`: Website ChatGPT-3.5 model (UNOFFICIAL)
+   * `Website ChatGPT-4.0`: Website ChatGPT-4.0 model (UNOFFICIAL)(available if you got a plus account)
+   * `Bard`: Google Bard Model
+   * `Bing`: Microsoft Bing Model
+### Special Features
+
+#### Draw
+
+![image](https://user-images.githubusercontent.com/91911303/223772051-13f840d5-99ef-4762-98d2-d15ce23cbbd5.png)
+
+#### Switch Persona
+
+> **Warning**
+>
+> Using certain personas may generate vulgar or disturbing content. Use at your own risk.
+
+![image](https://user-images.githubusercontent.com/91911303/223772334-7aece61f-ead7-4119-bcd4-7274979c4702.png)
 
 
-##### Select [application](https://discord.com/developers/applications)
-![image](https://user-images.githubusercontent.com/91066601/235554871-a5f98345-4197-4b55-91d7-1aef0d0680f0.png)
+#### Mode
 
-##### Enable intents
-![image](https://user-images.githubusercontent.com/91066601/235555012-e8427bfe-cffc-4761-bbc0-d1467ca1ff4d.png)
+* `public mode (default)`  the bot directly reply on the channel
 
-##### Get the token !!! by clicking copy
-![image](https://user-images.githubusercontent.com/91066601/235555065-6b51844d-dfbd-4b11-a14b-f65dd6de20d9.png)
-</details>
+  ![image](https://user-images.githubusercontent.com/89479282/206565977-d7c5d405-fdb4-4202-bbdd-715b7c8e8415.gif)
 
-### Step 5.Getting a Free Reverse OpenAI proxy Key 🔑
+* `private mode` the bot's reply can only be seen by the person who used the command
 
-Follow these steps:
+  ![image](https://user-images.githubusercontent.com/89479282/206565873-b181e600-e793-4a94-a978-47f806b986da.gif)
 
-1. Join the Discord server by clicking on the following invite link: [NAGA AI](https://discord.naga.ac/)
-2. Once you have joined the server, run the `/key get` command in any text channel.
-3. This command will provide you with a reverse OpenAI key.
+* `replyall mode` the bot will reply to all messages in the channel without using slash commands (`/chat` will also be unavailable)
 
-You can additionally enable `gpt-4` in `config.yml`
-
-### Step 6. 🔐 Rename `example.env` to `.env` and put the Discord bot token and your Chimira gpt key It will look like this:
-```
-DISCORD_TOKEN=<YOUR_DISCORD_BOT_TOKEN
-CHIMERA_GPT_KEY=<YOUR_CHIMIRA_API_KEY>
-```
-### Step 7. 🚀 Run the bot
-```
-python main.py
-```
-#### You may need to run as admin if you are on Windows
-### Step 8. 🔗 Invite the bot 
-You can Invite your bot using the link in console
-![image](https://user-images.githubusercontent.com/91066601/236673317-64a1789c-f6b1-48d7-ba1b-dbb18e7d802a.png)
-
-#### There are 2 ways to talk to the AI
-- Invite your bot and DM (Direct Message) it | ⚠️ Make sure you have DM enabled
-- if you want it in the server channel use **/toggleactive** 
-- For more awesome commands use **/help**
-![image](https://github.com/mishalhossin/Discord-AI-Chatbot/assets/91066601/6f26c552-751d-4753-bd17-883baf7ee6d5)
-
-# ✨  Other ways to run ✨
-### Using replit to run ☁️
-# [![Try on repl.it](https://img.shields.io/badge/Replit-DD1200?style=for-the-badge&logo=Replit&logoColor=white)](https://repl.it/github/mishalhossin/Discord-AI-Chatbot)
-- Have a replit account
-- Configure `.replit` to run `python main.py`
-
-![image](https://github.com/mishalhossin/Discord-AI-Chatbot/assets/91066601/81819ac2-7600-464e-b7c8-dc0a399aba15)
-
-- Please note environments variables of `.env` needs to be set in `Secrets` from `Tools` tab of replit 
-
-![image](https://github.com/mishalhossin/Discord-AI-Chatbot/assets/91066601/e93b1be7-4706-4b6f-a632-239c4fd16acf)
-
-- Config `secrets` in replit like this
-
-![image](https://github.com/mishalhossin/Discord-AI-Chatbot/assets/91066601/d629e97a-60d9-4ba4-b4fb-8fc6a8a97831)
-
-### Using docker to run 🐳
-![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
-- Have a working bot token
-- Follow up to step 4
-#### Install docker-compose on a Linux machine :
-For Debian-based distributions (such as Ubuntu):
-```
-apt update -y; sudo apt upgrade -y; sudo apt autoremove -y; sudo apt install docker-compose -y
-```
-<details>
-<summary><strong>Other Linux distro (Click to expand)</strong></summary>
-  
- 
-For Red Hat-based distributions (such as CentOS and Fedora):
-```
-sudo yum update -y && sudo yum install -y docker-compose
-```
-For Arch-based distributions (such as Arch Linux):
-```
-sudo pacman -Syu --noconfirm && sudo pacman -S --noconfirm docker-compose
-```
-For SUSE-based distributions (such as openSUSE):
-```
-sudo zypper update -y && sudo zypper install -y docker-compose
-```
-</details>
-
-#### Start the bot in Docker container :
-```
-sudo docker-compose up --build
-```
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=mishalhossin/Discord-AI-Chatbot&type=Timeline)](https://star-history.com/#mishalhossin/Discord-AI-Chatbot&Timeline)
-
-### Lovely Contributors : 
-
-<a href="https://github.com/mishalhossin/Discord-AI-Chatbot/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=mishalhossin/Discord-AI-Chatbot" />
-</a>
-
-### Crafted with Care: Made with lots of love and attention to detail. ❤️
+   > **Warning**
+   > The bot will easily be triggered in `replyall` mode, which could cause program failures
+ ---

@@ -1,16 +1,9 @@
-aiohttp
-asyncio
-discord.py
-requests
-flask
-discord
-python-dotenv
-PyYAML
-youtube-transcript-api
-langdetect
-PyPDF2
-python-docx
-tqdm
-fake-useragent
-openai
-werkzeug>=3.0.1 # not directly required, pinned by Snyk to avoid a vulnerability
+discord.py==2.3.1
+python-dotenv==1.0.0
+asgiref==3.6.0
+openai==1.1.1
+revChatGPT==6.8.6
+GoogleBard==2.1.0
+EdgeGPT==0.13.2
+selenium==4.9.1
+undetected-chromedriver==3.4.7
