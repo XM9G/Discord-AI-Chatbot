@@ -10,6 +10,7 @@ from src import log, art, personas, responses
 import time
 
 last_message_time = {}  # Dictionary to store the timestamp of the last message for each user
+
 forbidden_words = forbidden_words = [
     "assfuck", "assfucker", "assgoblin", "asshat",
     "asshead", "asshole", "asshopper", "assjacker", "asslick", "asslicker", "assmonkey", "assmunch", "assmuncher",
@@ -259,6 +260,7 @@ gpt-engine: {chat_engine_status}
         app_commands.Choice(name="Random", value="random"),
         app_commands.Choice(name="Standard", value="standard"),
         app_commands.Choice(name="Zhanger", value="zhanger-ath"),
+        app_commands.Choice(name="Billy", value="billy"),
         app_commands.Choice(name="Walter (Christian)", value="walter"),
         app_commands.Choice(name="Archer", value="archer"),
         app_commands.Choice(name="Discord Clyde", value="clyde"),
@@ -354,7 +356,8 @@ gpt-engine: {chat_engine_status}
 
                         logger.info(f"\x1b[31m{username}\x1b[0m : '{user_message}' ({client.current_channel})")
 
-                        await client.enqueue_message(message, user_message)
+                        await client.enqueue_message("bot" + str(message), str(user_message))
+                        logger.info(message, user_message)
 
                         # Update the timestamp for the user
                         last_message_time[message.author.id] = time.time()
