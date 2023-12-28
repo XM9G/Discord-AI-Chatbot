@@ -263,6 +263,7 @@ gpt-engine: {chat_engine_status}
         app_commands.Choice(name="Billy", value="billy"),
         app_commands.Choice(name="Walter (Christian)", value="walter"),
         app_commands.Choice(name="Archer", value="archer"),
+        app_commands.Choice(name="CEO", value="ceo"),
         app_commands.Choice(name="Discord Clyde", value="clyde"),
         app_commands.Choice(name="Skibidy", value="skibidi"),
         app_commands.Choice(name="old Zhanger", value="zhanger"),
