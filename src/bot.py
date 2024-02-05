@@ -322,7 +322,7 @@ gpt-engine: {chat_engine_status}
 
         else:
             await interaction.followup.send(
-                f"> **ERROR: No available persona: `{persona}` **")
+                f"> **ERROR: {persona} is currently unavalable **")
             logger.info(
                 f'{username} requested an unavailable persona: `{persona}`')
 

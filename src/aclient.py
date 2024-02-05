@@ -104,12 +104,15 @@ class aclient(discord.Client):
     async def send_message(self, message, user_message):
         if self.is_replying_all == "False":
             author = message.user.id
+            
         else:
             author = message.author.id
+            user = message.author.id
+
         try:
             response = ('')
             if self.chat_model == "OFFICIAL":
-                response = f"{response}{await responses.official_handle_response(user_message, self)}"
+                response = f"{response}{await responses.official_handle_response(user_message, self, user)}"
                 message_to_send=(response)
                 logger.info(message_to_send)
                 await message.reply(message_to_send, mention_author=True)

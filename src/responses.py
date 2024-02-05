@@ -3,9 +3,9 @@ from src.log import logger
 from asgiref.sync import sync_to_async
 from EdgeGPT.EdgeGPT import ConversationStyle
 
-
-async def official_handle_response(message, client) -> str:
-    return await sync_to_async(client.chatbot.ask)(message)
+# THIS IS WHERE IT SENDS IT TO THE API
+async def official_handle_response(message, client, user) -> str:
+    return await sync_to_async(client.chatbot.ask)(f"Message from {user}: {message}")
 
 async def unofficial_handle_response(message, client) -> str:
     async for response in client.chatbot.ask(message):
