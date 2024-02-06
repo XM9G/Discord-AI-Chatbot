@@ -5,8 +5,9 @@ from EdgeGPT.EdgeGPT import ConversationStyle
 
 # THIS IS WHERE IT SENDS IT TO THE API
 async def official_handle_response(message, client, user) -> str:
+    logger.info(f"Message from {user}: {message}")
     return await sync_to_async(client.chatbot.ask)(f"Message from {user}: {message}")
-
+    
 async def unofficial_handle_response(message, client) -> str:
     async for response in client.chatbot.ask(message):
         responseMessage = response["message"]

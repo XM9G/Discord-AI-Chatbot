@@ -112,7 +112,7 @@ class aclient(discord.Client):
         try:
             response = ('')
             if self.chat_model == "OFFICIAL":
-                response = f"{response}{await responses.official_handle_response(user_message, self, user)}"
+                response = f"{response}{await responses.official_handle_response(user_message, self, message.author)}"
                 message_to_send=(response)
                 logger.info(message_to_send)
                 await message.reply(message_to_send, mention_author=True)
@@ -145,7 +145,7 @@ class aclient(discord.Client):
                     logger.info(f"Send system prompt with size {len(self.starting_prompt)}")
                     response = ""
                     if self.chat_model == "OFFICIAL":
-                        response = f"{response}{await responses.official_handle_response(self.starting_prompt, self)}"
+                        response = f"{response}{await responses.official_handle_response(self.starting_prompt, self, 0)}"
                         await channel.send(response)
                     elif self.chat_model == "UNOFFICIAL":
                         response = f"{response}{await responses.unofficial_handle_response(self.starting_prompt, self)}"
